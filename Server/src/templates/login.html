@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h2>Login</h2>
+    <form action="" method="POST" novalidate>
+        <div>
+            {{ form.csrf_token }}
+        </div>
+        <div>
+            {{ form.login(class="form-control", placeholder="Login") }}
+        </div>
+        <div>
+            {{ form.password(class="form-control", placeholder="Password") }}
+        </div>
+        <div>
+            {{ form.submit(class="form-control btn btn-primary") }}
+        </div>
+    </form>
+    {% for cat, message in get_flashed_messages(True) %}
+        <div class="alert alert-{{ cat }}" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endblock %}
